@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
-import Auth from "../components/Auth";
 import Layout from "../components/Layout";
+import Auth from "../components/Auth";
 
 const Home: NextPage = () => {
   return (
