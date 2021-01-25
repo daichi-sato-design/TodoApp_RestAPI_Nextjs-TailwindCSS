@@ -10,7 +10,7 @@ interface PROPS {
 
 const Post: NextPage<PROPS> = ({ post }) => {
   const router = useRouter();
-  if (!post) {
+  if (router.isFallback || !post) {
     return <div>Loading...</div>;
   }
 
@@ -49,16 +49,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllPostIds();
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { post: post } = await getPostData(params.id);
+  const { post } = await getPostData(params.id);
   return {
     props: {
       post,
     },
+    revalidate: 3,
   };
 };
 
