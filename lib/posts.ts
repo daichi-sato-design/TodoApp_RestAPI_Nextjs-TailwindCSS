@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 
-const apiUrl = "https://jsonplaceholder.typicode.com/posts";
+const apiUrl = "https://jsonplaceholder.typicode.com";
 
 export interface POST {
   id: string;
@@ -10,13 +10,13 @@ export interface POST {
 }
 
 export const getAllPostsData = async () => {
-  const res = await fetch(new URL(apiUrl));
+  const res = await fetch(new URL(`${apiUrl}/posts`));
   const posts: POST[] = await res.json();
   return posts;
 };
 
 export const getAllPostIds = async () => {
-  const res = await fetch(new URL(apiUrl));
+  const res = await fetch(new URL(`${apiUrl}/posts`));
   const posts: POST[] = await res.json();
   return posts.map((post) => {
     return {
@@ -28,7 +28,7 @@ export const getAllPostIds = async () => {
 };
 
 export const getPostData = async (id) => {
-  const res = await fetch(new URL(`${apiUrl}/${id}/`));
+  const res = await fetch(new URL(`${apiUrl}/posts/${id}/`));
   const post: POST = await res.json();
   return {
     post,
