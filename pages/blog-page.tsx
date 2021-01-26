@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
 import Post from "../components/Post";
 import Link from "next/link";
-import { NextPage, NextPageContext } from "next";
+import { NextPage, GetStaticProps } from "next";
 import { POST, getAllPostsData } from "../lib/posts";
 
 interface PROPS {
@@ -39,7 +39,7 @@ const BlogPage: NextPage<PROPS> = ({ posts }) => {
 
 export default BlogPage;
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const posts = await getAllPostsData();
   return {
     props: { posts },
